@@ -1,5 +1,7 @@
 package pl.sgnit.homeworkweek1shop.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ public class ShopService {
 
     private final Basket basket;
 
+    Logger logger = LoggerFactory.getLogger(Basket.class);
+
     public ShopService(Basket basket) {
         this.basket = basket;
     }
@@ -24,7 +28,7 @@ public class ShopService {
         basket.addProduct(new Product("P3", generatePrice()));
         basket.addProduct(new Product("P4", generatePrice()));
         basket.addProduct(new Product("P5", generatePrice()));
-        System.out.println("Summary value: " + String.format("%.2f", basket.summaryValue()));
+        logger.info("Summary value: " + String.format("%.2f", basket.summaryValue()));
     }
 
     private double generatePrice() {
